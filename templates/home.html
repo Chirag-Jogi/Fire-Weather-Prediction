@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">FWI Prediction (Fire Weather Index)</h1>
+        
+        <form action="{{ url_for('predict_datapoint')}}" method="post" class="space-y-4">
+            <div>
+                <label for="temperature" class="block text-sm font-medium text-gray-700">Temperature (°C)</label>
+                <input type="number" step='any' id="temperature" name="Temperature" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Temperature" required>
+            </div>
+            <div>
+                <label for="rh" class="block text-sm font-medium text-gray-700">RH (Relative Humidity %)</label>
+                <input type="number" step='any' id="rh" name="RH" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Relative Humidity" required>
+            </div>
+            <div>
+                <label for="ws" class="block text-sm font-medium text-gray-700">WS (Wind Speed km/h)</label>
+                <input type="number"step='any' id="ws" name="WS" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Wind Speed" required>
+            </div>
+            <div>
+                <label for="rain" class="block text-sm font-medium text-gray-700">Rain (mm)</label>
+                <input type="number"step='any' id="rain" name="Rain" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Rainfall" required>
+            </div>
+            <div>
+                <label for="ffmc" class="block text-sm font-medium text-gray-700">FFMC (Fine Fuel Moisture Code)</label>
+                <input type="number"step='any' id="ffmc" name="FFMC" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter FFMC" required>
+            </div>
+            <div>
+                <label for="dmc" class="block text-sm font-medium text-gray-700">DMC (Duff Moisture Code)</label>
+                <input type="number"step='any' id="dmc" name="DMC" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter DMC" required>
+            </div>
+            <div>
+                <label for="isi" class="block text-sm font-medium text-gray-700">ISI (Initial Spread Index)</label>
+                <input type="number"step='any' id="isi" name="ISI" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter ISI" required>
+            </div>
+            <div>
+                <label for="classes" class="block text-sm font-medium text-gray-700">Classes</label>
+                <input type="number" id="classes" name="Classes" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Classes (0 or 1)" required>
+            </div>
+            <div>
+                <label for="region" class="block text-sm font-medium text-gray-700">Region</label>
+                <input type="number" id="region" name="Region" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Region (0 or 1)" required>
+            </div>
+            
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Predict FWI
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <h2 class="text-lg font-semibold text-gray-700">The FWI Prediction is:</h2>
+            <p class="text-2xl text-blue-600 font-bold">{{ results }}</p>
+        </div>
+    </div>
+</body>
+</html>
