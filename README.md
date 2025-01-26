@@ -8,4 +8,4 @@ This project aims to predict fire weather conditions using Machine Learning mode
 - **ML Models**: Training regression  models to predict fire risk levels.
 - **Visualizations**: Insights into weather trends and model predictions.
 
-- 
+
