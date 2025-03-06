@@ -9,7 +9,7 @@ app=application
 
 
 #import ridge regressor and standard scaler pickle
-ridge_model=pickle.load(open('models/ridge.pkl','rb'))
+gradientboost_model=pickle.load(open('models/gradientboost.pkl','rb'))
 standard_scaler=pickle.load(open('models/scaler.pkl','rb'))
 
 @app.route("/",methods=['GET','POST'])
@@ -26,7 +26,8 @@ def predict_datapoint():
         Region=float(request.form.get('Region'))
 
         new_data_scaled=standard_scaler.transform([[Temperature,RH,Ws,Rain,FFMC,DMC,ISI,Classes,Region]])
-        result=ridge_model.predict(new_data_scaled)
+        result=gradientboost_model.predict(new_data_scaled)
+        print(result)
         
         return render_template('home.html',results=result[0])
     else:
